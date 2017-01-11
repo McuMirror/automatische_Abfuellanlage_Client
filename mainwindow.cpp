@@ -1,4 +1,4 @@
-/* ###########################################################################################################
+/* ####################################################################################
  * Projekt:		Diplomarbeit: Autmatische Abfüllanlage
  * Host:		Android System
  * Filename:	mainwindow.cpp
@@ -6,7 +6,7 @@
  * Entwickler:	Wögerbauer Stefan
  * E-Mail:		woegste@hotmail.com
  *
- * ##########################################################################################################
+ * ####################################################################################
  */
 
 
@@ -39,13 +39,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	//loadMixesFromServerAfterTime= new QTimer(this);
 	//loadMixesFromServerAfterTime->setSingleShot(true);
-	//connect(loadMixesFromServerAfterTime, SIGNAL(timeout()), this, SLOT(loadMixesFromServer()));
+	//connect(loadMixesFromServerAfterTime, SIGNAL(timeout()), this,
+	//		SLOT(loadMixesFromServer()));
 
 	connect(ui->pushButton_quit, SIGNAL(clicked(bool)), this, SLOT(close()));
 
 	localBluetoothAdapters = QBluetoothLocalDevice::allDevices();
 
-	QBluetoothLocalDevice adapter(localBluetoothAdapters.at(0).address());	//Only one adapter allowed
+	//Only one adapter allowed
+	QBluetoothLocalDevice adapter(localBluetoothAdapters.at(0).address());
 	adapter.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
 
 	QScreen *screen = QApplication::screens().at(0);
@@ -82,18 +84,24 @@ void MainWindow::on_pushButton_connect_clicked()
 	{
 		QBluetoothServiceInfo service = remoteSelector.service();
 
-		qDebug() << "Connecting to service 2" << service.serviceName() << "on" << service.device().name();
+		qDebug() << "Connecting to service 2" << service.serviceName() <<
+					"on" << service.device().name();
 
 		// Create client
 		qDebug() << "Going to create client";
 		BluetoothTransmissionClient *client = new BluetoothTransmissionClient(this);
 		qDebug() << "Connecting...";
 
-		connect(client, SIGNAL(messageReceived(QString,QString)),   this,   SLOT(commandReceived(QString,QString)));
-		//connect(client, SIGNAL(disconnected()),                     this,   SLOT(clientDisconnected()));
-		connect(this,   SIGNAL(sendCommand(QString)),               client, SLOT(sendMessage(QString)));
-		//connect(client, SIGNAL(connected(QString)),					this,	SLOT(connected(QString)));
-		connect(client, SIGNAL(connected(QString)),					this,	SLOT(loadMixesFromServer()));
+		connect(client, SIGNAL(messageReceived(QString,QString)),   this,
+				SLOT(commandReceived(QString,QString)));
+		//connect(client, SIGNAL(disconnected()),                     this,
+		//		SLOT(clientDisconnected()));
+		connect(this,   SIGNAL(sendCommand(QString)),               client,
+				SLOT(sendMessage(QString)));
+		//connect(client, SIGNAL(connected(QString)),					this,
+				//SLOT(connected(QString)));
+		connect(client, SIGNAL(connected(QString)),					this,
+				SLOT(loadMixesFromServer()));
 		qDebug() << "Start client";
 		client->startClient(service);
 
@@ -116,7 +124,8 @@ void MainWindow::commandReceived(QString server, QString command)
 			commandForSend.append(command.at(i));
 		}
 
-		QMessageBox::critical(this, "Automatische Abfüllanlage", commandForSend.trimmed());
+		QMessageBox::critical(this, "Automatische Abfüllanlage",
+							  commandForSend.trimmed());
 	}
 	else if(command.trimmed() != "ready")
 	{
@@ -157,8 +166,10 @@ void MainWindow::writeListWidget(void)
 		item->setSizeHint(size);
 		ui->listWidget_Mixes->addItem(item);
 		ui->listWidget_Mixes->setItemWidget(item, button);
-		connect(button, SIGNAL(clicked(bool)), mixtures.at(i), SLOT(getCommandName()));
-		connect(mixtures.at(i), SIGNAL(sendName(QString)), this, SLOT(ButtonSlot(QString)));
+		connect(button,			SIGNAL(clicked(bool)),		mixtures.at(i),
+				SLOT(getCommandName()));
+		connect(mixtures.at(i), SIGNAL(sendName(QString)),	this,
+				SLOT(ButtonSlot(QString)));
 	}
 }
 

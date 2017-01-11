@@ -3,6 +3,15 @@
 # Project created by QtCreator 2016-11-15T06:34:42
 #
 #-------------------------------------------------
+############################################################################
+# Projekt:	Diplomarbeit: Autmatische Abfüllanlage
+# Host:		Android System
+#
+# Entwickler:	Wögerbauer Stefan
+# E-Mail:	woegste@hotmail.com
+#
+############################################################################
+
 
 QT       += core
 QT       += gui
@@ -28,18 +37,17 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
             remoteselector.ui
 
-CONFIG += mobility
+CONFIG +=   mobility
 MOBILITY = 
 
 DISTFILES += \
-    android/AndroidManifest.xml \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradlew \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat \
-    LICENSE.md
+            android/AndroidManifest.xml \
+            android/gradle/wrapper/gradle-wrapper.jar \
+            android/gradlew \
+            android/res/values/libs.xml \
+            android/build.gradle \
+            android/gradle/wrapper/gradle-wrapper.properties \
+            android/gradlew.bat \
+            LICENSE.md
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-

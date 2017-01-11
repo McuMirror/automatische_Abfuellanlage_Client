@@ -42,7 +42,9 @@
 
 #include <qbluetoothsocket.h>
 
-BluetoothTransmissionClient::BluetoothTransmissionClient(QObject *parent):QObject(parent), socket(0)
+BluetoothTransmissionClient::BluetoothTransmissionClient(QObject *parent):
+	QObject(parent),
+	socket(0)
 {
 }
 
@@ -52,7 +54,8 @@ BluetoothTransmissionClient::~BluetoothTransmissionClient()
 }
 
 //! [startClient]
-void BluetoothTransmissionClient::startClient(const QBluetoothServiceInfo &remoteService)
+void BluetoothTransmissionClient::startClient(
+		const QBluetoothServiceInfo &remoteService)
 {
     if (socket)
     {
@@ -90,7 +93,8 @@ void BluetoothTransmissionClient::readSocket()
     while (socket->canReadLine())
     {
         QByteArray line = socket->readLine();
-        emit messageReceived(socket->peerName(), QString::fromUtf8(line.constData(), line.length()));
+		emit messageReceived(socket->peerName(), QString::fromUtf8(line.constData(),
+																   line.length()));
     }
 }
 //! [readSocket]
