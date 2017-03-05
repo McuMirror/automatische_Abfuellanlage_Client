@@ -57,8 +57,6 @@ private:
 	int screenHeight;
 
 	QString localName;
-
-	//QTimer *loadMixesFromServerAfterTime;
 };
 
 #endif // MAINWINDOW_H

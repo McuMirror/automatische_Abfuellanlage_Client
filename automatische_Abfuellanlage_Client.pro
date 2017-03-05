@@ -1,21 +1,18 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2016-11-15T06:34:42
-#
-#-------------------------------------------------
-############################################################################
-# Projekt:	Diplomarbeit: Autmatische Abfüllanlage
-# Host:		Android System
-#
-# Entwickler:	Wögerbauer Stefan
-# E-Mail:	woegste@hotmail.com
-#
-############################################################################
+#######################################################################################
+#										      #
+# Projekt:	Diplomarbeit: Autmatische Abfüllanlage				      #
+# Host:		Android System							      #
+# Filename:	automatische_Abfuellanlage_Client.pro				      #
+#										      #
+# Entwickler:	Wögerbauer Stefan						      #
+# E-Mail:	woegste@hotmail.com						      #
+#										      #
+#######################################################################################
 
 
 QT       += core
-QT       += gui
-QT       += bluetooth
+QT       += gui			#add librarys for the graphical user interface
+QT       += bluetooth		#add librarys for bluetooth
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
